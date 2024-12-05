@@ -73,100 +73,76 @@ for i in range(n):
     print ("現在的數字是", (i) )</pre>
 <p>心得 這次的for 迴圈練習 以及列印字串</p>
 <p>       讓我更清楚到底是如何運作的</p>
-<h3>w13_hw</h3><p>
-<script src="/get_page/cmsimde/static/brython.js"></script>
-<script src="/get_page/cmsimde/static/brython_stdlib.js"></script>
-</p><script src="/get_page/cmsimde/static/brython.js"></script><script src="/get_page/cmsimde/static/brython_stdlib.js"></script><p>
+<h3>w13_hw</h3>
+<!-- 導入 brython 程式庫 -->
+<p>
+<script src="/static/brython.js"></script>
+<script src="/static/brython_stdlib.js"></script>
+</p>
+<!-- 啟動 Brython -->
+<p>
 <script>
 window.onload=function(){
 brython({debug:1, pythonpath:['./../cmsimde/static/','./../downloads/py/']});
 }
 </script>
+</p>
+<div id="brython_div1"></div>
+<p>
 <script type="text/python3">
 from browser import html
 from browser import document as doc
-
 # 利用 html 建立 canvas 超文件物件
 canvas = html.CANVAS(width=400, height=400)
 brython_div = doc["brython_div1"]
 brython_div <= canvas
-
 ctx = canvas.getContext("2d")
+
 ctx.lineWidth = 1
-
-# 繪製兩個矩形
-ctx.strokeStyle = 'red'  # 設定矩形顏色為紅色
-ctx.beginPath() 
-ctx.rect(10, 10, 200, 200)
-ctx.rect(110, 110, 200, 200)
-ctx.stroke()
-
-# 繪製對角線，顏色設定為藍色
-ctx.strokeStyle = 'blue'  # 設定對角線顏色為藍色
-ctx.beginPath() 
+ctx.strokeStyle = 'blue'  
+ctx.beginPath()
 ctx.moveTo(10, 10)
 ctx.lineTo(210, 210)
+ctx.stroke()
+# 設定正方形的寬高
+width = 1
+height = 1
+
+# 計算圓的半徑，確保圓包住正方形
+circle_radius = (2**0.5) * (gs / 2)  # 對角線的一半
+
+# 畫第一個正方形
+for i in range(width):
+    for j in range(height):
+        ctx.lineWidth = 1
+        ctx.strokeStyle = 'red'
+        ctx.beginPath()
+        ctx.rect(i * gs, j * gs , gs, gs)  # 加入偏移量
+        ctx.stroke()
+
+# 畫第二個正方形
+for i in range(width):
+    for j in range(height):
+        ctx.lineWidth = 1
+        ctx.strokeStyle = 'red'
+        ctx.beginPath()
+        ctx.rect(i * gs + 100 , j * gs + 100 , gs, gs)  # 加入偏移量
+        ctx.stroke()
+
+# 在正方形外畫圓
+# 第一個正方形的圓
+ctx.lineWidth = 1
+ctx.strokeStyle = 'black'
+ctx.beginPath()
+ctx.arc(gs / 2 + offset, gs / 2 , circle_radius, 0, 2 * 3.14159)  # 使用計算的半徑
+ctx.stroke()
+
+# 第二個正方形的圓
+ctx.beginPath()
+ctx.arc(gs / 2 + 100 , gs / 2 + 100 , circle_radius, 0, 2 * 3.14159)  # 使用計算的半徑
 ctx.stroke()
 </script>
-</p><p>="https://unpkg.com/tree@0.144.0/build/three.js"&gt;</p><script type="text/python3">
-from browser import html
-from browser import document as doc
-
-# 利用 html 建立 canvas 超文件物件
-canvas = html.CANVAS(width=400, height=400)
-brython_div = doc["brython_div1"]
-brython_div <= canvas
-
-ctx = canvas.getContext("2d")
-ctx.lineWidth = 1
-
-# 繪製兩個矩形
-ctx.strokeStyle = 'red'  # 設定矩形顏色為紅色
-ctx.beginPath() 
-ctx.rect(10, 10, 200, 200)
-ctx.rect(110, 110, 200, 200)
-ctx.stroke()
-
-# 繪製對角線，顏色設定為藍色
-ctx.strokeStyle = 'blue'  # 設定對角線顏色為藍色
-ctx.beginPath() 
-ctx.moveTo(10, 10)
-ctx.lineTo(210, 210)
-ctx.stroke()
-</script><script>
-window.onload=function(){
-brython({debug:1, pythonpath:['./../cmsimde/static/','./../downloads/py/']});
-}
-</script><script>
-window.onload=function(){
-brython({debug:1, pythonpath:['./../cmsimde/static/','./../downloads/py/']});
-}
-</script><script type="text/python3">
-from browser import html
-from browser import document as doc
-
-# 利用 html 建立 canvas 超文件物件
-canvas = html.CANVAS(width=400, height=400)
-brython_div = doc["brython_div1"]
-brython_div <= canvas
-
-ctx = canvas.getContext("2d")
-ctx.lineWidth = 1
-
-# 繪製兩個矩形
-ctx.strokeStyle = 'red'  # 設定矩形顏色為紅色
-ctx.beginPath() 
-ctx.rect(10, 10, 200, 200)
-ctx.rect(110, 110, 200, 200)
-ctx.stroke()
-
-# 繪製對角線，顏色設定為藍色
-ctx.strokeStyle = 'blue'  # 設定對角線顏色為藍色
-ctx.beginPath() 
-ctx.moveTo(10, 10)
-ctx.lineTo(210, 210)
-ctx.stroke()
-</script><h1>HW 2</h1>
+</p><h1>HW 2</h1>
 <h4>主題: Python 的數列、判斷式與重複迴圈 (20%)<span style="background-color: #ffff99;"><br/></span></h4>
 <p style="padding-left: 30px;">Python 課程教材: <a href="https://www.learnpythonwithjupyter.com/">https://www.learnpythonwithjupyter.com/</a> - PART 2 and Part 3</p>
 <hr/>

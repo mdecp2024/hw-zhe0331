@@ -160,18 +160,61 @@ brython({debug:1, pythonpath:['./../cmsimde/static/','./../downloads/py/']});
 <script type="text/python3">
 from browser import html
 from browser import document as doc
+
 # 利用 html 建立 canvas 超文件物件
-canvas = html.CANVAS(width=400, height=400)
+canvas = html.CANVAS(width=200, height=200)  # 將畫布大小縮小
 brython_div = doc["brython_div1"]
 brython_div <= canvas
-ctx = canvas.getContext("2d")
 
+ctx = canvas.getContext("2d")
 ctx.lineWidth = 1
-ctx.strokeStyle = 'blue'  
-ctx.beginPath()
-ctx.moveTo(10, 10)
-ctx.lineTo(210, 210)
+
+# 繪製對角線，顏色設定為藍色
+ctx.strokeStyle = 'blue'  # 設定對角線顏色為藍色
+ctx.beginPath() 
+ctx.moveTo(20, 20)  # 調整起點位置
+ctx.lineTo(100, 100)  # 第一條對角線，縮小大小
 ctx.stroke()
+
+# 繪製外接圓，圓心位於第一個矩形的中央
+center_x1 = 20 + 80 / 2  # 第一個矩形的X中心
+center_y1 = 20 + 80 / 2  # 第一個矩形的Y中心
+
+# 半徑為第一個矩形對角線的一半
+radius1 = (80 * (2 ** 0.5)) / 2
+
+# 繪製外接圓
+ctx.strokeStyle = 'green'  # 設定圓的顏色為綠色
+ctx.beginPath()
+ctx.arc(center_x1, center_y1, radius1, 0, 2 * 3.14159)  # 圓心 (center_x1, center_y1) 和半徑
+ctx.stroke()
+
+# 繪製外接圓，圓心位於第二個矩形的中央
+center_x2 = 60 + 80 / 2  # 第二個矩形的X中心
+center_y2 = 60 + 80 / 2  # 第二個矩形的Y中心
+
+# 半徑為第二個矩形對角線的一半
+radius2 = (80 * (2 ** 0.5)) / 2
+
+# 繪製外接圓
+ctx.strokeStyle = 'purple'  # 設定圓的顏色為紫色
+ctx.beginPath()
+ctx.arc(center_x2, center_y2, radius2, 0, 2 * 3.14159)  # 圓心 (center_x2, center_y2) 和半徑
+ctx.stroke()
+
+# 繪製第一個矩形，並填充顏色
+ctx.fillStyle = 'yellow'  # 設定填充顏色為黃色
+ctx.strokeStyle = 'red'   # 設定邊框顏色為紅色
+
+ctx.rect(20, 20, 80, 80)  # 設定矩形的位置和大小，縮小為 80x80
+ctx.stroke()  # 繪製邊框
+ctx.beginPath()
+
+# 繪製第二個矩形
+ctx.strokeStyle = 'green'    # 設定邊框顏色為綠色
+ctx.beginPath() 
+ctx.rect(60, 60, 80, 80)  # 設定第二個矩形的位置和大小，縮小為 60x60
+ctx.stroke()  # 繪製邊框
 </script>
 </p><br />w12 << <a href='w12.html'>Previous</a> <a href='HW 2.html'>Next</a> >> HW 2</div>
         
