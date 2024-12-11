@@ -160,61 +160,131 @@ brython({debug:1, pythonpath:['./../cmsimde/static/','./../downloads/py/']});
 <script type="text/python3">
 from browser import html
 from browser import document as doc
-
-# 利用 html 建立 canvas 超文件物件
-canvas = html.CANVAS(width=200, height=200)  # 將畫布大小縮小
+import math
+  
+canvas = html.CANVAS(width=500, height=500)
 brython_div = doc["brython_div1"]
 brython_div <= canvas
-
+  
 ctx = canvas.getContext("2d")
-ctx.lineWidth = 1
-
-# 繪製對角線，顏色設定為藍色
-ctx.strokeStyle = 'blue'  # 設定對角線顏色為藍色
+ctx.lineWidth = 4
+ 
+#混色的
+ctx.globalCompositeOperation = "screem"
+ 
+ 
+#黑邊圓*2(每個畫四個邊邊)
+ctx.strokeStyle = 'black'
+#第一個圓
+ctx.beginPath()
+ctx.arc(160, 160, 141, 0.25 * math.pi,0.75 * math.pi)
+ctx.fillStyle = "Turquoise"
+ctx.fill()
+ctx.stroke()
+ 
+ctx.beginPath()
+ctx.arc(160, 160, 141, 0.75 * math.pi,1.25 * math.pi)
+ctx.fillStyle = "Tomato"
+ctx.fill()
+ctx.stroke()
+ 
+ctx.beginPath()
+ctx.arc(160, 160, 141, 1.25 * math.pi,1.75 * math.pi)
+ctx.fillStyle = "SpringGreen"
+ctx.fill()
+ctx.stroke()
+ 
+ctx.beginPath()
+ctx.arc(160, 160, 141, 1.75 * math.pi,0.25 * math.pi)
+ctx.fillStyle = "FloralWhite"
+ctx.fill()
+ctx.stroke()
+ 
+#第二個圓
+ctx.beginPath()
+ctx.arc(260, 260, 141, 1.25 * math.pi,1.75 * math.pi)
+ctx.fillStyle = "Purple"
+ctx.fill()
+ctx.stroke()
+ 
+ctx.beginPath()
+ctx.arc(260, 260, 141, 1.75 * math.pi,0.25 * math.pi)
+ctx.fillStyle = "OliveDrab"
+ctx.fill()
+ctx.stroke()
+ 
+ctx.beginPath()
+ctx.arc(260, 260, 141, 0.25 * math.pi,0.75 * math.pi)
+ctx.fillStyle = "Orange"
+ctx.fill()
+ctx.stroke()
+ 
+ctx.beginPath()
+ctx.arc(260, 260, 141, 0.75 * math.pi,1.25 * math.pi)
+ctx.fillStyle = "MediumVioletRed"
+ctx.fill()
+ctx.stroke()
+ 
+ 
+#紅方形*2(4個三角形)
+ctx.strokeStyle = 'red'
+ctx.beginPath()
+ctx.moveTo(60,60)
+ctx.lineTo(60,260)
+ctx.lineTo(260,260)
+ctx.fillStyle = "Gold"
+ctx.fill()
+ctx.stroke()
+ 
+ctx.beginPath()
+ctx.moveTo(60,60)
+ctx.lineTo(260,60)
+ctx.lineTo(260,260)
+ctx.fillStyle = "Indigo"
+ctx.fill()
+ctx.stroke()
+ 
+ctx.beginPath()
+ctx.moveTo(160,160)
+ctx.lineTo(360,160)
+ctx.lineTo(360,360)
+ctx.fillStyle = "Cyan"
+ctx.fill()
+ctx.stroke()
+ 
+ctx.beginPath()
+ctx.moveTo(160,160)
+ctx.lineTo(160,360)
+ctx.lineTo(360,360)
+ctx.fillStyle = "SpringGreen"
+ctx.fill()
+ctx.stroke()
+ 
+  
+#重疊的小方型
+ctx.beginPath()
+ctx.moveTo(160,160)
+ctx.lineTo(160,260)
+ctx.lineTo(260,260)
+ctx.fillStyle = "Turquoise"
+ctx.fill()
+ctx.stroke()
+ 
+ctx.beginPath()
+ctx.moveTo(160,160)
+ctx.lineTo(260,160)
+ctx.lineTo(260,260)
+ctx.fillStyle = "SlateBlue"
+ctx.fill()
+ctx.stroke()
+ 
+ 
+#籃斜線
+ctx.strokeStyle = 'blue'
 ctx.beginPath() 
-ctx.moveTo(20, 20)  # 調整起點位置
-ctx.lineTo(100, 100)  # 第一條對角線，縮小大小
+ctx.moveTo(60, 60)
+ctx.lineTo(260, 260)
 ctx.stroke()
-
-# 繪製外接圓，圓心位於第一個矩形的中央
-center_x1 = 20 + 80 / 2  # 第一個矩形的X中心
-center_y1 = 20 + 80 / 2  # 第一個矩形的Y中心
-
-# 半徑為第一個矩形對角線的一半
-radius1 = (80 * (2 ** 0.5)) / 2
-
-# 繪製外接圓
-ctx.strokeStyle = 'green'  # 設定圓的顏色為綠色
-ctx.beginPath()
-ctx.arc(center_x1, center_y1, radius1, 0, 2 * 3.14159)  # 圓心 (center_x1, center_y1) 和半徑
-ctx.stroke()
-
-# 繪製外接圓，圓心位於第二個矩形的中央
-center_x2 = 60 + 80 / 2  # 第二個矩形的X中心
-center_y2 = 60 + 80 / 2  # 第二個矩形的Y中心
-
-# 半徑為第二個矩形對角線的一半
-radius2 = (80 * (2 ** 0.5)) / 2
-
-# 繪製外接圓
-ctx.strokeStyle = 'purple'  # 設定圓的顏色為紫色
-ctx.beginPath()
-ctx.arc(center_x2, center_y2, radius2, 0, 2 * 3.14159)  # 圓心 (center_x2, center_y2) 和半徑
-ctx.stroke()
-
-# 繪製第一個矩形，並填充顏色
-ctx.fillStyle = 'yellow'  # 設定填充顏色為黃色
-ctx.strokeStyle = 'red'   # 設定邊框顏色為紅色
-
-ctx.rect(20, 20, 80, 80)  # 設定矩形的位置和大小，縮小為 80x80
-ctx.stroke()  # 繪製邊框
-ctx.beginPath()
-
-# 繪製第二個矩形
-ctx.strokeStyle = 'green'    # 設定邊框顏色為綠色
-ctx.beginPath() 
-ctx.rect(60, 60, 80, 80)  # 設定第二個矩形的位置和大小，縮小為 60x60
-ctx.stroke()  # 繪製邊框
 </script>
 </p><br />w12 << <a href='w12.html'>Previous</a> <a href='HW 2.html'>Next</a> >> HW 2</div>
         

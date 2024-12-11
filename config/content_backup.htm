@@ -104,43 +104,6 @@ ctx.beginPath()
 ctx.moveTo(10, 10)
 ctx.lineTo(210, 210)
 ctx.stroke()
-# 設定正方形的寬高
-width = 1
-height = 1
-
-# 計算圓的半徑，確保圓包住正方形
-circle_radius = (2**0.5) * (gs / 2)  # 對角線的一半
-
-# 畫第一個正方形
-for i in range(width):
-    for j in range(height):
-        ctx.lineWidth = 1
-        ctx.strokeStyle = 'red'
-        ctx.beginPath()
-        ctx.rect(i * gs, j * gs , gs, gs)  # 加入偏移量
-        ctx.stroke()
-
-# 畫第二個正方形
-for i in range(width):
-    for j in range(height):
-        ctx.lineWidth = 1
-        ctx.strokeStyle = 'red'
-        ctx.beginPath()
-        ctx.rect(i * gs + 100 , j * gs + 100 , gs, gs)  # 加入偏移量
-        ctx.stroke()
-
-# 在正方形外畫圓
-# 第一個正方形的圓
-ctx.lineWidth = 1
-ctx.strokeStyle = 'black'
-ctx.beginPath()
-ctx.arc(gs / 2 + offset, gs / 2 , circle_radius, 0, 2 * 3.14159)  # 使用計算的半徑
-ctx.stroke()
-
-# 第二個正方形的圓
-ctx.beginPath()
-ctx.arc(gs / 2 + 100 , gs / 2 + 100 , circle_radius, 0, 2 * 3.14159)  # 使用計算的半徑
-ctx.stroke()
 </script>
 </p><h1>HW 2</h1>
 <h4>主題: Python 的數列、判斷式與重複迴圈 (20%)<span style="background-color: #ffff99;"><br/></span></h4>
